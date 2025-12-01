@@ -1,0 +1,22 @@
+# Project
+
+## Idea
+- Tic tac toe
+
+## Features
+- 2 player
+- draw canvas with tic tac toe lines  | |
+                                    ------
+                                      | |
+																		-------
+																			| |
+
+- game logic
+- sprite for circle and for x
+
+## Architecture
+- Main 
+- TicTacToe (Game logic and initialiser)
+- Players
+- Drawing
+
