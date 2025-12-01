@@ -1,0 +1,85 @@
+class TicTacToe {
+
+	field Array players;
+	field int numberPlayers;
+	field int registerPlayers;
+	field Drawing drawing;
+
+	constructor TicTacToe new(){
+
+    do Output.printString("Tic Tac Toe");
+		do Output.println();
+
+		let numberPlayers = 2;
+		let registerPlayers = 0;
+		let players = Array.new(numberPlayers);
+
+		do createDrawing();
+
+	//	do createPlayer();
+	//	do createPlayer();
+
+
+		return this;
+	}
+
+method void createPlayer(){
+
+		var String name;
+
+		do Output.println();
+		do Output.printString("Create new player");
+
+		if(registerPlayers < numberPlayers  ){
+
+			let name = String.new(30);
+			let name = Keyboard.readLine("Register name:");
+
+			do Output.println();
+			do Output.printString("Inside register");
+
+			let players[registerPlayers] = Player.new(name,0,registerPlayers);
+			let registerPlayers = registerPlayers+1;
+
+		}
+		do Output.println();
+		do Output.printString("Outside register");
+		return;
+
+}
+
+//method void startGame(){
+//
+//}
+
+//method void gameLogic(){
+//
+//}
+
+//method void gameLoop(){
+//
+//}
+
+method void createDrawing(){
+	let drawing = Drawing.new();
+	return;
+}
+
+
+	method Player getPlayer1(){
+		return players[0];
+	}
+	method Player getPlayer2(){
+		return players[1];
+	}
+	method Drawing getDrawing(){
+		return drawing;
+
+	}
+
+//method void destroyTicTacToe(){
+//
+//}
+
+
+}

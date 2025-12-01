@@ -1,0 +1,42 @@
+class Player {
+
+	field String name;
+	field int points;
+	/*sprite == 0 ==> circle */
+	/*sprite == 1 ==> x */
+	field int sprite;
+
+	constructor Player new (string nameP, int pointsP, int spriteP){
+		let name = nameP;
+		let points = pointsP;
+		let sprite = spriteP;
+		return this;
+	}
+	method int getPoints(){
+		return points;
+	}
+	method String getName(){
+		return name;
+	}
+	method String getSprite(){
+		return sprite;
+	}
+
+	method void toString(){
+		do Output.printString("Name:");
+		do Output.printString(name);
+		do Output.println();
+		do Output.printString("Points:");
+		do Output.printInt(points);
+		do Output.println();
+		do Output.printString("Sprite:");
+		if( sprite = 0){
+		do Output.printString("\t Circle");
+		do Output.println();
+		}else{
+		do Output.printString("\t X");
+		do Output.println();
+		}
+		return;
+	}
+}

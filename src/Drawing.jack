@@ -1,0 +1,71 @@
+class Drawing {
+	field int x;
+	field int y;
+	field int ROWS;
+	field int COLUMNS;
+	field int PADDING;
+	constructor Drawing new(){
+		do Output.printString("start drawing");
+		do Output.println();
+		let ROWS=256;
+		let COLUMNS=512;
+		let PADDING=20;
+		return this;
+	}
+	method void drawBoard(){
+		var Drawing drawing ;
+		var int rows;
+		var int cols;
+		var int padding;
+
+		let drawing = this;
+
+		let rows = drawing.getRows();
+		let cols = drawing.getColumns();
+		let padding = drawing.getPadding();
+
+		do Screen.setColor(true);
+
+    do Output.printString("Testing");
+		do Output.println();
+
+	//	do Output.printString("COLUMNS");
+	//	do Output.printInt(drawing.getColumns());
+	//	do Output.println();
+	//	do Output.printString("ROWS");
+	//	do Output.printInt(drawing.getRows());
+
+
+		do Screen.drawLine(cols/3,padding,cols/3,(rows - padding));
+		do Screen.drawLine(cols*2/3,padding,cols*2/3,(rows - padding));
+		do Screen.drawLine(padding,rows/3,cols-padding,rows/3);
+		do Screen.drawLine(padding,rows*2/3,cols-padding,rows*2/3);
+		//do Screen.drawLine(100,100+100,100+100,100+100);
+		return;
+	}
+	method int getColumns(){
+		return COLUMNS;
+	}
+	method int getRows(){
+		return ROWS;
+	}
+	method int getPadding(){
+		return PADDING;
+	}
+
+	method void clearScreen(){
+		do Output.println();
+		do Output.printString("Inside clear screen");
+		do Output.println();
+		do Screen.clearScreen();
+		return ;
+	}
+
+//	function void drawBoard(){
+//		return ;
+//	}
+	method void drawSprite(int spriteP, int cell){
+		return ;
+	}
+
+}
