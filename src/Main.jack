@@ -2,28 +2,8 @@ class Main {
 
 	function void main(){
 		var TicTacToe ttt;
-		var Player player1;
-		var Player player2;
-		var Drawing drawing;
-		
-    do Output.printString("hello world");
-		do Output.println();
-
 		let ttt = TicTacToe.new();
-		do ttt.createDrawing();
-		
-		//let player1 = ttt.getPlayer1();
-//		let player2 = ttt.getPlayer2();
-//
-//		do player1.toString();
-//		do player2.toString();
-
-		let drawing = ttt.getDrawing();
-
-		do drawing.clearScreen();
-
-		do drawing.drawBoard();
-		
+		do ttt.startGame();
 		return;
 	}
 

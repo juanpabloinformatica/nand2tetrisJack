@@ -4,68 +4,151 @@ class Drawing {
 	field int ROWS;
 	field int COLUMNS;
 	field int PADDING;
+	
 	constructor Drawing new(){
 		do Output.printString("start drawing");
 		do Output.println();
-		let ROWS=256;
-		let COLUMNS=512;
+		let ROWS=216;
+		let COLUMNS=472;
 		let PADDING=20;
 		return this;
 	}
-	method void drawBoard(){
-		var Drawing drawing ;
-		var int rows;
-		var int cols;
-		var int padding;
 
-		let drawing = this;
+method void drawSelectedCells(Array cellMemory){
 
-		let rows = drawing.getRows();
-		let cols = drawing.getColumns();
-		let padding = drawing.getPadding();
+	var int i;
+	var int stepX;
+	var int stepY;
 
-		do Screen.setColor(true);
+	let stepX = (COLUMNS/6);
+	let stepY = (ROWS/6);
+	let i = 0;
+	while(i < 9){
 
-    do Output.printString("Testing");
-		do Output.println();
+		if(cellMemory[i] = 0){
 
-	//	do Output.printString("COLUMNS");
-	//	do Output.printInt(drawing.getColumns());
-	//	do Output.println();
-	//	do Output.printString("ROWS");
-	//	do Output.printInt(drawing.getRows());
+			if(i = 0){
+				do Screen.drawCircle(PADDING+stepX,PADDING+stepY,10);
+			}
+			if(i = 1){
+				do Screen.drawCircle(PADDING+(3*stepX),PADDING+stepY,10);
+			}
+			if(i = 2){
+				do Screen.drawCircle(PADDING+(5*stepX),PADDING+stepY,10);
+			}
+			if(i = 3){
+				do Screen.drawCircle(PADDING+stepX,PADDING+(3*stepY),10);
+			}
+			if(i = 4){
+				do Screen.drawCircle(PADDING+(3*stepX),PADDING+(3*stepY),10);
+			}
+			if(i = 5){
+				do Screen.drawCircle(PADDING+(5*stepX),PADDING+(3*stepY),10);
+			}
+			if(i = 6){
+				do Screen.drawCircle(PADDING+stepX,PADDING+(5*stepY),10);
+			}
+			if(i = 7){
+				do Screen.drawCircle(PADDING+(3*stepX),PADDING+(5*stepY),10);
+			}
+			if(i = 8){
+				do Screen.drawCircle(PADDING+(3*stepX),PADDING+(5*stepY),10);
+			}
+		}else{
+			//if(i = 0){
+			//	do Screen.drawRectangle(PADDING+stepX,PADDING+stepY,15);
+			//}
+			//if(i = 1){
+			//	do Screen.drawRectangle(PADDING+(3*stepX),PADDING+stepY,15);
+			//}
+			//if(i = 2){
+			//	do Screen.drawRectangle(PADDING+(5*stepX),PADDING+stepY,15);
+			//}
+//			if(i = 3){
+//				do Screen.drawRectangle(PADDING+stepX,PADDING+stepY,20);
+//			}
+//			if(i = 4){
+//				do Screen.drawRectangle(PADDING+(3*stepX),PADDING+stepY,20);
+//			}
+//			if(i = 5){
+//				do Screen.drawRectangle(PADDING+(5*stepX),PADDING+stepY,20);
+//			}
+//			if(i = 6){
+//				do Screen.drawRectangle(PADDING+stepX,PADDING+stepY,20);
+//			}
+//			if(i = 7){
+//				do Screen.drawRectangle(PADDING+(3*stepX),PADDING+stepY,20);
+//			}
+//			if(i = 8){
+//				do Screen.drawRectangle(PADDING+(3*stepX),PADDING+stepY,20);
+//			}
 
-
-		do Screen.drawLine(cols/3,padding,cols/3,(rows - padding));
-		do Screen.drawLine(cols*2/3,padding,cols*2/3,(rows - padding));
-		do Screen.drawLine(padding,rows/3,cols-padding,rows/3);
-		do Screen.drawLine(padding,rows*2/3,cols-padding,rows*2/3);
-		//do Screen.drawLine(100,100+100,100+100,100+100);
-		return;
+		}
+		let i = i + 1 ;
 	}
-	method int getColumns(){
-		return COLUMNS;
-	}
-	method int getRows(){
-		return ROWS;
-	}
-	method int getPadding(){
-		return PADDING;
+	return;
+}
+
+method void drawBoard(Array cellMemory){
+	var Drawing drawing ;
+	var int rows;
+	var int cols;
+	var int padding;
+	var int i;
+
+	let drawing = this;
+
+	let rows = drawing.getRows();
+	let cols = drawing.getColumns();
+	let padding = drawing.getPadding();
+
+	let i = 0;
+	while(i < 9){
+    do Output.printInt(i);
+		do Output.printString(" -> ");
+    do Output.printInt(cellMemory[i]);
+	  do Output.println();
+		let i = i + 1 ;
 	}
 
-	method void clearScreen(){
-		do Output.println();
-		do Output.printString("Inside clear screen");
-		do Output.println();
-		do Screen.clearScreen();
-		return ;
-	}
+	
 
-//	function void drawBoard(){
-//		return ;
-//	}
-	method void drawSprite(int spriteP, int cell){
-		return ;
-	}
+	//do Screen.setColor(true);
+
+	////do Output.printString("Testing");
+	////do Output.println();
+
+
+	
+	do Screen.drawLine(cols/3,padding,cols/3,(rows - padding));
+	do Screen.drawLine(cols*2/3,padding,cols*2/3,(rows - padding));
+	do Screen.drawLine(padding,rows/3,cols-padding,rows/3);
+	do Screen.drawLine(padding,rows*2/3,cols-padding,rows*2/3);
+	//do Screen.drawLine(100,100+100,100+100,100+100);
+	//do Screen.drawCircle((cols/6)+padding,(rows/6)+padding,20);
+
+	do drawing.drawSelectedCells(cellMemory);
+	return;
+}
+
+
+method int getColumns(){
+	return COLUMNS;
+}
+method int getRows(){
+	return ROWS;
+}
+method int getPadding(){
+	return PADDING;
+}
+
+method void clearScreen(){
+	do Screen.clearScreen();
+	return;
+}
+
+method void drawSprite(int spriteP, int cell){
+	return ;
+}
 
 }

@@ -4,6 +4,8 @@ class TicTacToe {
 	field int numberPlayers;
 	field int registerPlayers;
 	field Drawing drawing;
+	field Array cellMemory;
+	field int turnFlag;
 
 	constructor TicTacToe new(){
 
@@ -13,52 +15,340 @@ class TicTacToe {
 		let numberPlayers = 2;
 		let registerPlayers = 0;
 		let players = Array.new(numberPlayers);
+		let cellMemory = Array.new(9);
+
 
 		do createDrawing();
 
-	//	do createPlayer();
-	//	do createPlayer();
+		do createPlayer();
+		do createPlayer();
 
+		do initTurnFlag();
+
+		do initialiseCellMemory();
 
 		return this;
 	}
 
+method void initialiseCellMemory(){
+
+	var int i;
+	let i = 0;
+
+	while( i < 9  ){
+		let cellMemory[i] = -1;
+		let i = i + 1;
+	}
+	return;
+}
+
+method void showCellMemory(){
+
+	var int i;
+	let i = 0;
+
+	while( i < 9  ){
+		do Output.printString("i->");
+		do Output.printInt(i);
+		do Output.println();
+		do Output.printInt(cellMemory[i]);
+		let i = i + 1;
+	}
+	return;
+}
+
+method void initTurnFlag(){
+	let turnFlag = 0;
+	return;
+}
 method void createPlayer(){
 
 		var String name;
 
 		do Output.println();
-		do Output.printString("Create new player");
+		do Output.printString("create new player");
 
 		if(registerPlayers < numberPlayers  ){
 
 			let name = String.new(30);
 			let name = Keyboard.readLine("Register name:");
 
-			do Output.println();
-			do Output.printString("Inside register");
+			//do Output.println();
+			//do Output.printString("Inside register");
 
 			let players[registerPlayers] = Player.new(name,0,registerPlayers);
 			let registerPlayers = registerPlayers+1;
 
 		}
-		do Output.println();
-		do Output.printString("Outside register");
+	//	do Output.println();
+	//	do Output.printString("Outside register");
 		return;
 
 }
 
-//method void startGame(){
-//
-//}
+/**/
+method bool gameEnded(){
 
-//method void gameLogic(){
-//
-//}
+	var int conditionNumber;
+	var TicTacToe ticTacToe;
+	var bool result;
 
-//method void gameLoop(){
-//
-//}
+	let conditionNumber = -1;
+	let ticTacToe = this;
+
+	let result  = false;
+
+	/*Player 0*/
+
+	if (cellMemory[0] = 0 ){
+		if( cellMemory[1] = 0 ){
+			if( cellMemory[2] = 0){
+				let conditionNumber=1;
+				let result = true;
+			}
+		}
+	}
+
+	if(cellMemory[3] = 0 ){
+		if( cellMemory[4] = 0 ){
+			if( cellMemory[5] = 0 ){
+				let conditionNumber=2;
+					let result=true;
+			}
+		}
+	}
+
+	if(cellMemory[6] = 0 ){
+		if( cellMemory[7] = 0 ){
+			if( cellMemory[8] = 0 ){
+				let conditionNumber=3;
+				let result=true;
+			}
+		}
+	}
+
+	if(cellMemory[0] = 0 ){
+		if( cellMemory[3] = 0 ){
+			if( cellMemory[6] = 0 ){
+				let conditionNumber=4;
+				let result=true;
+			}
+		}
+	}
+
+	if(cellMemory[1] = 0 ){
+		if( cellMemory[4] = 0 ){
+			if( cellMemory[7] = 0 ){
+				let conditionNumber=5;
+				let result=true;
+			}
+		}
+	}
+
+	if(cellMemory[2] = 0 ){
+		if( cellMemory[5] = 0 ){
+			if( cellMemory[8] = 0 ){
+				let conditionNumber=6;
+				let result=true;
+			}
+		}
+	}
+
+	if(cellMemory[0] = 0 ){
+		if( cellMemory[4] = 0 ){
+			if( cellMemory[8] = 0 ){
+				let conditionNumber=7;
+				let result=true;
+			}
+		}
+	}
+
+	if(cellMemory[2] = 0 ){
+		if( cellMemory[4] = 0 ){
+			if( cellMemory[6] = 0 ){
+				let conditionNumber=8;
+				let result=true;
+			}
+		}
+	}
+
+	
+
+/*Player 1*/
+	if (cellMemory[0] = 1 ){
+		if ( cellMemory[1] = 1 ){
+			if( cellMemory[2] = 1){
+				let conditionNumber=11;
+				let result=true;
+			}
+		}
+	}
+
+
+	if(cellMemory[3] = 1 ){
+		if( cellMemory[4] = 1 ){
+			if( cellMemory[5] = 1 ){
+				let conditionNumber=12;
+				let result=true;
+				}
+			}
+		}
+	if(cellMemory[6] = 1 ){
+		if( cellMemory[7] = 1 ){
+			if( cellMemory[8] = 1 ){
+				let conditionNumber=13;
+				let result=true;
+				}
+			}
+		}
+
+	if(cellMemory[0] = 1 ){
+		if( cellMemory[3] = 1 ){
+			if( cellMemory[6] = 1 ){
+				let conditionNumber=14;
+				let result=true;
+				}
+			}
+		}
+
+	if(cellMemory[1] = 1 ){
+		if( cellMemory[4] = 1 ){
+			if( cellMemory[7] = 1 ){
+				let conditionNumber=15;
+				let result=true;
+				}
+			}
+		}
+
+	if(cellMemory[2] = 1 ){
+		if( cellMemory[5] = 1 ){
+			if( cellMemory[8] = 1 ){
+				let conditionNumber=16;
+				let result=true;
+				}
+			}
+		}
+
+
+	if(cellMemory[0] = 1 ){
+		if( cellMemory[4] = 1 ){
+			if( cellMemory[8] = 1 ){
+				let conditionNumber=17;
+				let result=true;
+				}
+			}
+		}
+	if(cellMemory[2] = 1 ){
+		if( cellMemory[4] = 1 ){
+			if( cellMemory[6] = 1 ){
+				let conditionNumber=18;
+				let result=true;
+				}
+			}
+		}
+
+	if(~(cellMemory[0]=-1)) {
+
+		if( ~(cellMemory[1]=-1)) {
+
+			if( ~(cellMemory[2]=-1) ){
+
+				if( ~(cellMemory[3]=-1)) {
+
+					if( ~(cellMemory[4]=-1)) {
+						
+							if( ~(cellMemory[5]=-1)) {
+
+								if( ~(cellMemory[6]=-1)) {
+
+										if( ~(cellMemory[7]=-1)) {
+
+											if( ~(cellMemory[8]=-1)) {
+												let conditionNumber=20;
+												let result = true;
+											}
+										}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+	do Output.printString("Entering in condition:");
+	do Output.println();
+	do Output.printInt(conditionNumber);
+	do Output.println();
+	return result;
+
+}
+
+method void pickCell(){
+	var TicTacToe ticTacToe;
+	var int i;
+	var int cell;
+	//var Array cellMemory;
+
+	let ticTacToe = this;
+	//let cellMemory = ticTacToe.getCellMemory();
+	let i = 0;
+
+
+
+	do Output.println();
+	do Output.printString("The player ");
+	do Output.printInt(turnFlag);
+	do Output.println();
+	do Output.printString("You can pick the following cells.");
+	do Output.println();
+
+	while(i < 9){
+		if(cellMemory[i]=-1){
+			do Output.printInt(i);
+			do Output.printString("->");
+		}
+		let i=i+1;
+	}
+	do Output.println();
+	let cell = Keyboard.readInt("Choose cell: ");
+	let cellMemory[cell] = turnFlag;
+	
+	do showCellMemory();
+
+	return;
+}
+
+method void startGame(){
+
+	var TicTacToe ticTacToe;
+	var Drawing drawing;
+	var Array cellMemory;
+	var bool continue;
+
+	let ticTacToe = this;
+	let drawing = ticTacToe.getDrawing();
+	let cellMemory = ticTacToe.getCellMemory();
+	let continue = ticTacToe.gameEnded();
+	
+
+	while(~(continue = true)){
+		do drawing.clearScreen();
+		do ticTacToe.pickCell();
+		do drawing.clearScreen();
+		do drawing.drawBoard(cellMemory);
+		do Sys.wait(3000);
+		let continue = ticTacToe.gameEnded();
+		do switchTurnFlag();
+	}
+	do drawing.clearScreen();
+	do Output.printString("outside ");
+	do Output.println();
+
+	return;
+
+}
+
 
 method void createDrawing(){
 	let drawing = Drawing.new();
@@ -66,20 +356,30 @@ method void createDrawing(){
 }
 
 
-	method Player getPlayer1(){
-		return players[0];
-	}
-	method Player getPlayer2(){
-		return players[1];
-	}
-	method Drawing getDrawing(){
-		return drawing;
+method Player getPlayer1(){
+	return players[0];
+}
+method Player getPlayer2(){
+	return players[1];
+}
+method Drawing getDrawing(){
+	return drawing;
 
+}
+method Array getCellMemory(){
+	return cellMemory;
+}
+method int getTurnFlag(){
+	return turnFlag;
+
+}
+method void switchTurnFlag(){
+	if(turnFlag = 0){
+		let turnFlag = 1;
+	}else{
+		let turnFlag = 0;
 	}
-
-//method void destroyTicTacToe(){
-//
-//}
-
+	return;
+}
 
 }
