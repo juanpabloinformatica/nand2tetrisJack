@@ -4,6 +4,7 @@ class Drawing {
 	field int ROWS;
 	field int COLUMNS;
 	field int PADDING;
+	field int SUBPADDING;
 	
 	constructor Drawing new(){
 		do Output.printString("start drawing");
@@ -11,79 +12,89 @@ class Drawing {
 		let ROWS=216;
 		let COLUMNS=472;
 		let PADDING=20;
+		let SUBPADDING=15;
 		return this;
 	}
 
 method void drawSelectedCells(Array cellMemory){
 
 	var int i;
-	var int stepX;
-	var int stepY;
+	var int stepXCircle;
+	var int stepYCircle;
+	
+	var int stepXRectangle;
+	var int stepYRectangle;
 
-	let stepX = (COLUMNS/6);
-	let stepY = (ROWS/6);
+
+	let stepXCircle = (COLUMNS/6);
+	let stepYCircle = (ROWS/6);
+
 	let i = 0;
+
+
+														
+
 	while(i < 9){
 
 		if(cellMemory[i] = 0){
 
 			if(i = 0){
-				do Screen.drawCircle(PADDING+stepX,PADDING+stepY,10);
+				do Screen.drawCircle(PADDING+stepXCircle,PADDING+stepYCircle,18);
 			}
 			if(i = 1){
-				do Screen.drawCircle(PADDING+(3*stepX),PADDING+stepY,10);
+				do Screen.drawCircle(PADDING+(3*stepXCircle),PADDING+stepYCircle,18);
 			}
 			if(i = 2){
-				do Screen.drawCircle(PADDING+(5*stepX),PADDING+stepY,10);
+				do Screen.drawCircle(PADDING+(5*stepXCircle),PADDING+stepYCircle,18);
 			}
 			if(i = 3){
-				do Screen.drawCircle(PADDING+stepX,PADDING+(3*stepY),10);
+				do Screen.drawCircle(PADDING+stepXCircle,PADDING+(3*stepYCircle),18);
 			}
 			if(i = 4){
-				do Screen.drawCircle(PADDING+(3*stepX),PADDING+(3*stepY),10);
+				do Screen.drawCircle(PADDING+(3*stepXCircle),PADDING+(3*stepYCircle),18);
 			}
 			if(i = 5){
-				do Screen.drawCircle(PADDING+(5*stepX),PADDING+(3*stepY),10);
+				do Screen.drawCircle(PADDING+(5*stepXCircle),PADDING+(3*stepYCircle),18);
 			}
 			if(i = 6){
-				do Screen.drawCircle(PADDING+stepX,PADDING+(5*stepY),10);
+				do Screen.drawCircle(PADDING+stepXCircle,PADDING+(5*stepYCircle),18);
 			}
 			if(i = 7){
-				do Screen.drawCircle(PADDING+(3*stepX),PADDING+(5*stepY),10);
+				do Screen.drawCircle(PADDING+(3*stepXCircle),PADDING+(5*stepYCircle),18);
 			}
 			if(i = 8){
-				do Screen.drawCircle(PADDING+(3*stepX),PADDING+(5*stepY),10);
+				do Screen.drawCircle(PADDING+(3*stepXCircle),PADDING+(5*stepYCircle),18);
 			}
-		}else{
-			//if(i = 0){
-			//	do Screen.drawRectangle(PADDING+stepX,PADDING+stepY,15);
-			//}
-			//if(i = 1){
-			//	do Screen.drawRectangle(PADDING+(3*stepX),PADDING+stepY,15);
-			//}
-			//if(i = 2){
-			//	do Screen.drawRectangle(PADDING+(5*stepX),PADDING+stepY,15);
-			//}
-//			if(i = 3){
-//				do Screen.drawRectangle(PADDING+stepX,PADDING+stepY,20);
-//			}
-//			if(i = 4){
-//				do Screen.drawRectangle(PADDING+(3*stepX),PADDING+stepY,20);
-//			}
-//			if(i = 5){
-//				do Screen.drawRectangle(PADDING+(5*stepX),PADDING+stepY,20);
-//			}
-//			if(i = 6){
-//				do Screen.drawRectangle(PADDING+stepX,PADDING+stepY,20);
-//			}
-//			if(i = 7){
-//				do Screen.drawRectangle(PADDING+(3*stepX),PADDING+stepY,20);
-//			}
-//			if(i = 8){
-//				do Screen.drawRectangle(PADDING+(3*stepX),PADDING+stepY,20);
-//			}
-
 		}
+		if(cellMemory[i] = 1){
+			if(i = 0){
+					do Screen.drawRectangle(PADDING+(4*SUBPADDING),PADDING+SUBPADDING,PADDING+(COLUMNS/3)-(4*SUBPADDING),PADDING+(ROWS/3)-SUBPADDING);
+			}
+			if(i = 1){
+					do Screen.drawRectangle(PADDING+(COLUMNS/3)+(4*SUBPADDING),PADDING+SUBPADDING,PADDING+(2*COLUMNS/3)-(4*SUBPADDING),PADDING+(ROWS/3)-SUBPADDING);
+			}
+			if(i = 2){
+					do Screen.drawRectangle(PADDING+(2*COLUMNS/3)+(4*SUBPADDING),PADDING+SUBPADDING,PADDING+(3*COLUMNS/3)-(4*SUBPADDING),PADDING+(ROWS/3)-SUBPADDING);
+			}
+			if(i = 3){
+						do Screen.drawRectangle(PADDING+(4*SUBPADDING),PADDING+(ROWS/3)+SUBPADDING,PADDING+(COLUMNS/3)-(4*SUBPADDING),PADDING+(2*ROWS/3)-SUBPADDING);
+			}
+			if(i = 4){
+						do Screen.drawRectangle(PADDING+(COLUMNS/3)+(4*SUBPADDING),PADDING+(ROWS/3)+SUBPADDING,PADDING+(2*COLUMNS/3)-(4*SUBPADDING),PADDING+(2*ROWS/3)-SUBPADDING);
+			}
+			if(i = 5){
+						do Screen.drawRectangle(PADDING+(2*COLUMNS/3)+(4*SUBPADDING),PADDING+(ROWS/3)+SUBPADDING,PADDING+(3*COLUMNS/3)-(4*SUBPADDING),PADDING+(2*ROWS/3)-SUBPADDING);
+			}
+			if(i = 6){
+		do Screen.drawRectangle(PADDING+(4*SUBPADDING),PADDING+(2*ROWS/3)+SUBPADDING,PADDING+(COLUMNS/3)-(4*SUBPADDING),PADDING+(3*ROWS/3)-SUBPADDING);
+			}
+			if(i = 7){
+		do Screen.drawRectangle(PADDING+(COLUMNS/3)+(4*SUBPADDING),PADDING+(2*ROWS/3)+SUBPADDING,PADDING+(2*COLUMNS/3)-(4*SUBPADDING),PADDING+(3*ROWS/3)-SUBPADDING);
+			}
+			if(i = 8){
+		do Screen.drawRectangle(PADDING+(2*COLUMNS/3)+(4*SUBPADDING),PADDING+(2*ROWS/3)+SUBPADDING,PADDING+(3*COLUMNS/3)-(4*SUBPADDING),PADDING+(3*ROWS/3)-SUBPADDING);
+			}
+	}
 		let i = i + 1 ;
 	}
 	return;
@@ -120,12 +131,10 @@ method void drawBoard(Array cellMemory){
 
 
 	
-	do Screen.drawLine(cols/3,padding,cols/3,(rows - padding));
-	do Screen.drawLine(cols*2/3,padding,cols*2/3,(rows - padding));
-	do Screen.drawLine(padding,rows/3,cols-padding,rows/3);
-	do Screen.drawLine(padding,rows*2/3,cols-padding,rows*2/3);
-	//do Screen.drawLine(100,100+100,100+100,100+100);
-	//do Screen.drawCircle((cols/6)+padding,(rows/6)+padding,20);
+	do Screen.drawLine(padding+(cols/3),padding,padding+(cols/3),(rows - padding));
+	do Screen.drawLine(padding+(cols*2/3),padding,padding+(cols*2/3),(rows - padding));
+	do Screen.drawLine(padding,padding+(rows/3),(cols-padding),padding+(rows/3));
+	do Screen.drawLine(padding,padding+(rows*2/3),(cols-padding),padding+(rows*2/3));
 
 	do drawing.drawSelectedCells(cellMemory);
 	return;

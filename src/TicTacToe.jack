@@ -276,10 +276,10 @@ method bool gameEnded(){
 			}
 		}
 
-	do Output.printString("Entering in condition:");
-	do Output.println();
-	do Output.printInt(conditionNumber);
-	do Output.println();
+//	do Output.printString("Entering in condition:");
+//	do Output.println();
+//	do Output.printInt(conditionNumber);
+//	do Output.println();
 	return result;
 
 }
@@ -329,7 +329,7 @@ method void startGame(){
 	let ticTacToe = this;
 	let drawing = ticTacToe.getDrawing();
 	let cellMemory = ticTacToe.getCellMemory();
-	let continue = ticTacToe.gameEnded();
+	let continue = false;
 	
 
 	while(~(continue = true)){
