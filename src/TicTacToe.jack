@@ -6,6 +6,16 @@ class TicTacToe {
 	field Drawing drawing;
 	field Array cellMemory;
 	field int turnFlag;
+	field int winnerPoints;
+	field int tiePoints;
+	field int numberOfMatches;
+	/*
+	 * winner == -1 --> not winner yet
+	 * winner == 0  --> player 1 won
+	 * winner == 1  --> player 2 won
+	 * winner == 2  --> draw
+	*/
+	field int winner;
 
 	constructor TicTacToe new(){
 
@@ -14,6 +24,9 @@ class TicTacToe {
 
 		let numberPlayers = 2;
 		let registerPlayers = 0;
+		let numberOfMatches = 0;
+
+		let winner = -1;
 		let players = Array.new(numberPlayers);
 		let cellMemory = Array.new(9);
 
@@ -86,8 +99,26 @@ method void createPlayer(){
 
 }
 
-/**/
 method bool gameEnded(){
+	var bool result;
+	var int continue;
+
+	let result = false;
+
+	do Output.println();
+	let continue = Keyboard.readInt("0 -> stop playing || 1 -> continue playing:  ");
+	do Output.println();
+
+	if(continue = 0){
+		let result = true;
+	}
+	if(continue = 1 ){
+		let result = false;
+	}
+	return result;
+}
+/**/
+method bool matchEnded(){
 
 	var int conditionNumber;
 	var TicTacToe ticTacToe;
@@ -103,6 +134,7 @@ method bool gameEnded(){
 	if (cellMemory[0] = 0 ){
 		if( cellMemory[1] = 0 ){
 			if( cellMemory[2] = 0){
+				let winner = 0;
 				let conditionNumber=1;
 				let result = true;
 			}
@@ -112,6 +144,7 @@ method bool gameEnded(){
 	if(cellMemory[3] = 0 ){
 		if( cellMemory[4] = 0 ){
 			if( cellMemory[5] = 0 ){
+				let winner = 0;
 				let conditionNumber=2;
 					let result=true;
 			}
@@ -121,6 +154,7 @@ method bool gameEnded(){
 	if(cellMemory[6] = 0 ){
 		if( cellMemory[7] = 0 ){
 			if( cellMemory[8] = 0 ){
+				let winner = 0;
 				let conditionNumber=3;
 				let result=true;
 			}
@@ -130,6 +164,7 @@ method bool gameEnded(){
 	if(cellMemory[0] = 0 ){
 		if( cellMemory[3] = 0 ){
 			if( cellMemory[6] = 0 ){
+				let winner = 0;
 				let conditionNumber=4;
 				let result=true;
 			}
@@ -139,6 +174,7 @@ method bool gameEnded(){
 	if(cellMemory[1] = 0 ){
 		if( cellMemory[4] = 0 ){
 			if( cellMemory[7] = 0 ){
+				let winner = 0;
 				let conditionNumber=5;
 				let result=true;
 			}
@@ -148,6 +184,7 @@ method bool gameEnded(){
 	if(cellMemory[2] = 0 ){
 		if( cellMemory[5] = 0 ){
 			if( cellMemory[8] = 0 ){
+				let winner = 0;
 				let conditionNumber=6;
 				let result=true;
 			}
@@ -157,6 +194,7 @@ method bool gameEnded(){
 	if(cellMemory[0] = 0 ){
 		if( cellMemory[4] = 0 ){
 			if( cellMemory[8] = 0 ){
+				let winner = 0;
 				let conditionNumber=7;
 				let result=true;
 			}
@@ -166,6 +204,7 @@ method bool gameEnded(){
 	if(cellMemory[2] = 0 ){
 		if( cellMemory[4] = 0 ){
 			if( cellMemory[6] = 0 ){
+				let winner = 0;
 				let conditionNumber=8;
 				let result=true;
 			}
@@ -178,6 +217,7 @@ method bool gameEnded(){
 	if (cellMemory[0] = 1 ){
 		if ( cellMemory[1] = 1 ){
 			if( cellMemory[2] = 1){
+				let winner = 1;
 				let conditionNumber=11;
 				let result=true;
 			}
@@ -188,6 +228,7 @@ method bool gameEnded(){
 	if(cellMemory[3] = 1 ){
 		if( cellMemory[4] = 1 ){
 			if( cellMemory[5] = 1 ){
+				let winner = 1;
 				let conditionNumber=12;
 				let result=true;
 				}
@@ -210,10 +251,10 @@ method bool gameEnded(){
 				}
 			}
 		}
-
 	if(cellMemory[1] = 1 ){
 		if( cellMemory[4] = 1 ){
 			if( cellMemory[7] = 1 ){
+				let winner = 1;
 				let conditionNumber=15;
 				let result=true;
 				}
@@ -223,6 +264,7 @@ method bool gameEnded(){
 	if(cellMemory[2] = 1 ){
 		if( cellMemory[5] = 1 ){
 			if( cellMemory[8] = 1 ){
+				let winner = 1;
 				let conditionNumber=16;
 				let result=true;
 				}
@@ -233,6 +275,7 @@ method bool gameEnded(){
 	if(cellMemory[0] = 1 ){
 		if( cellMemory[4] = 1 ){
 			if( cellMemory[8] = 1 ){
+				let winner = 1;
 				let conditionNumber=17;
 				let result=true;
 				}
@@ -241,6 +284,7 @@ method bool gameEnded(){
 	if(cellMemory[2] = 1 ){
 		if( cellMemory[4] = 1 ){
 			if( cellMemory[6] = 1 ){
+				let winner = 1;
 				let conditionNumber=18;
 				let result=true;
 				}
@@ -264,6 +308,7 @@ method bool gameEnded(){
 										if( ~(cellMemory[7]=-1)) {
 
 											if( ~(cellMemory[8]=-1)) {
+												let winner = 2;
 												let conditionNumber=20;
 												let result = true;
 											}
@@ -282,6 +327,21 @@ method bool gameEnded(){
 //	do Output.println();
 	return result;
 
+}
+
+method void showPickableCells(){
+	
+	var int i;
+	let i = 0;
+	while(i < 9){
+		if(cellMemory[i]=-1){
+			do Output.printInt(i);
+			do Output.printString("->");
+		}
+		let i=i+1;
+	}
+	do Output.println();
+	return;
 }
 
 method void pickCell(){
@@ -303,15 +363,20 @@ method void pickCell(){
 	do Output.printString("You can pick the following cells.");
 	do Output.println();
 
-	while(i < 9){
-		if(cellMemory[i]=-1){
-			do Output.printInt(i);
-			do Output.printString("->");
-		}
-		let i=i+1;
-	}
+	do showPickableCells();
 	do Output.println();
 	let cell = Keyboard.readInt("Choose cell: ");
+	
+	while(~(cellMemory[cell] = -1)){
+		do Output.printString("cell:");
+		do Output.printInt(cell);
+		do Output.println();
+		do Output.printString("Already selected you can pick");
+		do Output.println();
+		do showPickableCells();
+		let cell = Keyboard.readInt("Choose cell: ");
+	}
+
 	let cellMemory[cell] = turnFlag;
 	
 	do showCellMemory();
@@ -324,29 +389,117 @@ method void startGame(){
 	var TicTacToe ticTacToe;
 	var Drawing drawing;
 	var Array cellMemory;
-	var bool continue;
+	var bool continueGame;
+	var bool continueMatch;
 
 	let ticTacToe = this;
 	let drawing = ticTacToe.getDrawing();
 	let cellMemory = ticTacToe.getCellMemory();
-	let continue = false;
+	let continueGame = false;
+	let continueMatch = false;
 	
 
-	while(~(continue = true)){
+	while(~(continueGame = true)){
+		do resetMatch();
+		while(~(continueMatch = true)){
+			do drawing.clearScreen();
+			do ticTacToe.pickCell();
+			do drawing.clearScreen();
+			do drawing.drawBoard(cellMemory);
+			do Sys.wait(3000);
+			let continueMatch = ticTacToe.matchEnded();
+			do switchTurnFlag();
+		}
 		do drawing.clearScreen();
-		do ticTacToe.pickCell();
-		do drawing.clearScreen();
-		do drawing.drawBoard(cellMemory);
-		do Sys.wait(3000);
-		let continue = ticTacToe.gameEnded();
-		do switchTurnFlag();
+		do updatePlayersPoints();
+		do showMatchWinner();
+		let continueGame =  gameEnded();
 	}
-	do drawing.clearScreen();
-	do Output.printString("outside ");
+	do showGameWinner();
+	return;
+}
+
+
+method void resetMatch(){
+	/*reset cells for redrawing*/
+	var int i;
+	let i = 0;
+	while (i < 9){
+		let cellMemory[i] = -1;
+		let i = i + 1;
+	}
+	let winner = -1;
+	return;
+}
+method void updatePlayersPoints(){
+	var Player player0,player1;
+	let player0 =  players[0];
+	let player1 =  players[1];
+
+	if(winner = 0){
+		do player0.setPoints(3);
+	}
+	if(winner = 1){
+		do player1.setPoints(3);
+	}
+	if(winner = 2){
+		do player0.setPoints(1);
+		do player1.setPoints(1);
+	}
+	return;
+}
+
+method void showGameWinner(){
+
+	var Player player0;
+	var Player player1;
+
+	let player0 =  getPlayer1();
+	let player1 =  getPlayer2();
+
+	do Output.printString("Winner of game:");
 	do Output.println();
 
-	return;
 
+	if(player0.getPoints() > player1.getPoints()){
+	do Output.printString("Winner:");
+	do Output.println();
+	do Output.printString("Player 1");
+	}
+	if(player0.getPoints() < player1.getPoints()){
+	do Output.printString("Winner:");
+	do Output.println();
+	do Output.printString("Player 2");
+	}
+	if (player0.getPoints() = player1.getPoints()){
+	do Output.printString("No Winner, is a Game TIE");
+	do Output.println();
+	}
+
+	return;
+}
+method void showMatchWinner(){
+
+	do Output.printString("Winner of match: ");
+	do Output.printInt(numberOfMatches);
+	do Output.println();
+
+	if(winner = 0){
+	do Output.printString("Winner:");
+	do Output.println();
+	do Output.printString("Player 1");
+	}
+	if(winner = 1){
+	do Output.printString("Winner:");
+	do Output.println();
+	do Output.printString("Player 2");
+	}
+	if (winner = 2){
+	do Output.printString("No Winner, is a match TIE");
+	do Output.println();
+	}
+
+	return;
 }
 
 
@@ -354,6 +507,7 @@ method void createDrawing(){
 	let drawing = Drawing.new();
 	return;
 }
+
 
 
 method Player getPlayer1(){
@@ -379,6 +533,10 @@ method void switchTurnFlag(){
 	}else{
 		let turnFlag = 0;
 	}
+	return;
+}
+method void setTurnFlag(){
+	let turnFlag = winner;
 	return;
 }
 
