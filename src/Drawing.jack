@@ -139,8 +139,9 @@ method void clearScreen(){
 	return;
 }
 
-method void drawSprite(int spriteP, int cell){
-	return ;
+method void dispose(){
+	do Memory.deAlloc(this);
+	return;
 }
 
 }

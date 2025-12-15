@@ -27,7 +27,7 @@ class TicTacToe {
 		let registerPlayers = 0;
 		let numberOfMatches = 0;
 		let instructions = String.new(120);
-		let instructions = "The idea is simple is 3x3 matrix from left to right and from up to down, first position is 0 and last one is 8.";
+		let instructions = "The idea is simple is 3x3 matrix from left to right and from top to bottom, first position is 0 and last one is 8.";
 
 		let winner = -1;
 		let players = Array.new(numberPlayers);
@@ -408,6 +408,7 @@ method void showInstructions(){
 	while(continue=0){
 		let continue= Keyboard.keyPressed();
 	}
+	do Sys.wait(1000);
 	return;
 }
 method void startGame(){
@@ -572,6 +573,25 @@ method void switchTurnFlag(){
 }
 method void setTurnFlag(){
 	let turnFlag = winner;
+	return;
+}
+
+method void dispose(){
+	//field Array players;
+	var Player player0,player1;
+	let player0 = getPlayer1();
+	let player1 = getPlayer2();
+	do player0.dispose();
+	do player1.dispose();
+	do players.dispose();
+	//field Drawing drawing;
+	do drawing.dispose();
+	//field Array cellMemory;
+	do cellMemory.dispose();
+	//field String instructions;
+	do instructions.dispose();
+	// finally removing game itself;
+	do Memory.deAlloc(this);
 	return;
 }
 

@@ -4,6 +4,7 @@ class Main {
 		var TicTacToe ttt;
 		let ttt = TicTacToe.new();
 		do ttt.startGame();
+		do ttt.dispose();
 		return;
 	}
 
