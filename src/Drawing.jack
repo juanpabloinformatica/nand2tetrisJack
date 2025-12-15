@@ -113,23 +113,6 @@ method void drawBoard(Array cellMemory){
 	let cols = drawing.getColumns();
 	let padding = drawing.getPadding();
 
-	let i = 0;
-	while(i < 9){
-    do Output.printInt(i);
-		do Output.printString(" -> ");
-    do Output.printInt(cellMemory[i]);
-	  do Output.println();
-		let i = i + 1 ;
-	}
-
-	
-
-	//do Screen.setColor(true);
-
-	////do Output.printString("Testing");
-	////do Output.println();
-
-
 	
 	do Screen.drawLine(padding+(cols/3),padding,padding+(cols/3),(rows - padding));
 	do Screen.drawLine(padding+(cols*2/3),padding,padding+(cols*2/3),(rows - padding));

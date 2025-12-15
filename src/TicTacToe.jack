@@ -9,6 +9,7 @@ class TicTacToe {
 	field int winnerPoints;
 	field int tiePoints;
 	field int numberOfMatches;
+	field String instructions;
 	/*
 	 * winner == -1 --> not winner yet
 	 * winner == 0  --> player 1 won
@@ -25,6 +26,8 @@ class TicTacToe {
 		let numberPlayers = 2;
 		let registerPlayers = 0;
 		let numberOfMatches = 0;
+		let instructions = String.new(120);
+		let instructions = "The idea is simple is 3x3 matrix from left to right and from up to down, first position is 0 and last one is 8.";
 
 		let winner = -1;
 		let players = Array.new(numberPlayers);
@@ -308,9 +311,11 @@ method bool matchEnded(){
 										if( ~(cellMemory[7]=-1)) {
 
 											if( ~(cellMemory[8]=-1)) {
+
 												let winner = 2;
 												let conditionNumber=20;
 												let result = true;
+
 											}
 										}
 								}
@@ -336,7 +341,9 @@ method void showPickableCells(){
 	while(i < 9){
 		if(cellMemory[i]=-1){
 			do Output.printInt(i);
-			do Output.printString("->");
+			if(~(i=9)){
+				do Output.printString("->");
+			}
 		}
 		let i=i+1;
 	}
@@ -348,7 +355,11 @@ method void pickCell(){
 	var TicTacToe ticTacToe;
 	var int i;
 	var int cell;
-	//var Array cellMemory;
+	var Player player0;
+	var Player player1;
+
+	let player0 =  getPlayer1();
+	let player1 =  getPlayer2();
 
 	let ticTacToe = this;
 	//let cellMemory = ticTacToe.getCellMemory();
@@ -357,8 +368,12 @@ method void pickCell(){
 
 
 	do Output.println();
-	do Output.printString("The player ");
-	do Output.printInt(turnFlag);
+	do Output.printString("The player: ");
+	if(turnFlag = 0){
+		do Output.printString(player0.getName());
+	}else{
+		do Output.printString(player1.getName());
+	}
 	do Output.println();
 	do Output.printString("You can pick the following cells.");
 	do Output.println();
@@ -384,6 +399,17 @@ method void pickCell(){
 	return;
 }
 
+method void showInstructions(){
+	var int continue;
+	do Output.println();
+	do Output.printString(instructions);
+	do Output.println();
+	let continue = 0;
+	while(continue=0){
+		let continue= Keyboard.keyPressed();
+	}
+	return;
+}
 method void startGame(){
 
 	var TicTacToe ticTacToe;
@@ -401,6 +427,9 @@ method void startGame(){
 
 	while(~(continueGame = true)){
 		do resetMatch();
+		if(numberOfMatches < 1){
+			do showInstructions();
+		}
 		while(~(continueMatch = true)){
 			do drawing.clearScreen();
 			do ticTacToe.pickCell();
@@ -410,6 +439,7 @@ method void startGame(){
 			let continueMatch = ticTacToe.matchEnded();
 			do switchTurnFlag();
 		}
+		let numberOfMatches = numberOfMatches+1;
 		do drawing.clearScreen();
 		do updatePlayersPoints();
 		do showMatchWinner();
@@ -464,12 +494,12 @@ method void showGameWinner(){
 	if(player0.getPoints() > player1.getPoints()){
 	do Output.printString("Winner:");
 	do Output.println();
-	do Output.printString("Player 1");
+	do Output.printString(player0.getName());
 	}
 	if(player0.getPoints() < player1.getPoints()){
 	do Output.printString("Winner:");
 	do Output.println();
-	do Output.printString("Player 2");
+	do Output.printString(player1.getName());
 	}
 	if (player0.getPoints() = player1.getPoints()){
 	do Output.printString("No Winner, is a Game TIE");
@@ -479,6 +509,11 @@ method void showGameWinner(){
 	return;
 }
 method void showMatchWinner(){
+	var Player player0;
+	var Player player1;
+
+	let player0 =  getPlayer1();
+	let player1 =  getPlayer2();
 
 	do Output.printString("Winner of match: ");
 	do Output.printInt(numberOfMatches);
@@ -487,12 +522,12 @@ method void showMatchWinner(){
 	if(winner = 0){
 	do Output.printString("Winner:");
 	do Output.println();
-	do Output.printString("Player 1");
+	do Output.printString(player0.getName());
 	}
 	if(winner = 1){
 	do Output.printString("Winner:");
 	do Output.println();
-	do Output.printString("Player 2");
+	do Output.printString(player1.getName());
 	}
 	if (winner = 2){
 	do Output.printString("No Winner, is a match TIE");
